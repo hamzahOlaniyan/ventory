@@ -18,6 +18,9 @@ const config = {
       },
     },
     extend: {
+      colors: {
+        background: "#f8fafc",
+      },
       // colors: {
       //   border: "hsl(var(--border))",
       //   input: "hsl(var(--input))",
