@@ -1,4 +1,4 @@
-import { signInAction, signInWithGithub } from "@/app/actions";
+import { signInAction, signInWithGithub, signInWithGoogle } from "@/app/actions";
 import { FormMessage, Message } from "@/components/form-message";
 import { SubmitButton } from "@/components/submit-button";
 import { Input } from "@/components/ui/input";
@@ -44,6 +44,11 @@ export default async function Login(props: { searchParams: Promise<Message> }) {
       <button type='button' onClick={signInWithGithub}>
         Sign in with gitHub
       </button>
+      <button type='button' onClick={signInWithGoogle}>
+        Sign in with google
+      </button>
+
+      signInWithGoogle
     </>
 
   );

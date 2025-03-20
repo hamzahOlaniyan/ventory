@@ -24,6 +24,11 @@ export const createClient = async () => {
           }
         },
       },
-    },
+      // auth:{
+      //   autoRefreshToken:true,
+      //   persistSession:true,
+      //   detectSessionInUrl:true
+      // }
+    }
   );
 };
