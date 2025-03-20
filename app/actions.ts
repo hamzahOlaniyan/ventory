@@ -4,17 +4,23 @@ import { encodedRedirect } from "@/utils/utils";
 import { createClient } from "@/utils/supabase/server";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
 export const signInWithGithub = async () => {
   const supabase = await createClient();
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "github",
-    options: {
-      redirectTo: "https://yileuinzjzccvnkoudhz.supabase.co/auth/v1/callback",
-    },
   });
 };
+export const signInWithGoogle = async () => {
+  const supabase = await createClient();
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+  });
+};
+
 export const signUpAction = async (formData: FormData) => {
+  const fullName = formData.get("fullName")?.toString();
   const email = formData.get("email")?.toString();
   const password = formData.get("password")?.toString();
   const supabase = await createClient();
@@ -41,18 +47,14 @@ export const signUpAction = async (formData: FormData) => {
     console.error(error.code + " " + error.message);
     return encodedRedirect("error", "/sign-up", error.message);
   } else {
-    return console.log(
+    return encodedRedirect(
       "success",
       "/sign-up",
       "Thanks for signing up! Please check your email for a verification link."
     );
-
-    // encodedRedirect(
-    //   "success",
-    //   "/sign-up",
-    //   "Thanks for signing up! Please check your email for a verification link."
-    // );
   }
+  revalidatePath("/", "layout");
+  redirect("/sign-up");
 };
 
 export const signInAction = async (formData: FormData) => {
