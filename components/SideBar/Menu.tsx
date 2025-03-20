@@ -1,31 +1,32 @@
 'use client'
-import React from 'react'
+import React, { ElementType } from 'react'
 import { ClipboardCheckIcon, DatabaseBackupIcon, SailboatIcon, Wallet2Icon, TableCellsMergeIcon, GalleryHorizontalEndIcon, MenuIcon, Settings2Icon, FileQuestionIcon, AccessibilityIcon } from 'lucide-react'
+import { FcDocument, FcBarChart, FcViewDetails, FcSalesPerformance, FcOrgUnit, FcDataSheet } from "react-icons/fc";
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 type PageLinksType = {
     page: string
     url: string,
-    icon?: React.ReactNode
+    icon?: ElementType
 }[]
 
 export const pages: PageLinksType = [
-    { page: 'dashboard', url: '/dashboard', icon: <ClipboardCheckIcon className='text-xs text-neutral-500 hover:text-neutral-900' /> },
-    { page: 'inventory', url: '/inventory', icon: <DatabaseBackupIcon className='text-xs text-neutral-500 hover:text-neutral-900' /> },
-    { page: 'sales', url: '/sales', icon: <SailboatIcon className='text-xs text-neutral-500 hover:text-neutral-900' /> },
-    { page: 'order', url: '/order', icon: <Wallet2Icon className='text-xs text-neutral-500 hover:text-neutral-900' /> },
-    { page: 'report', url: '/report', icon: <TableCellsMergeIcon className='text-xs text-neutral-500 hover:text-neutral-900' /> },
-    { page: 'document', url: '/document', icon: <GalleryHorizontalEndIcon className='text-xs text-neutral-500 hover:text-neutral-900' /> },
+    { page: 'dashboard', url: '/dashboard', icon: FcOrgUnit },
+    { page: 'inventory', url: '/inventory', icon: FcViewDetails },
+    { page: 'sales', url: '/sales', icon: FcSalesPerformance },
+    { page: 'order', url: '/order', icon: FcDataSheet },
+    { page: 'report', url: '/report', icon: FcBarChart },
+    { page: 'document', url: '/document', icon: FcDocument },
 ]
-export const MenuIncons = () => {
+export const MenuIcons = () => {
 
     const pathname = usePathname()
     return (
-        <ul className='w-full h-full flex flex-col gap-4 justify-center items-start'>
-            {pages.map((links) => (
-                <li key={links.page} className={`${pathname.includes(links.page) ? 'text-yellow-400' : 'bg-grey-600'}`}>
-                    <Link href={links.url}>{links.icon}</Link>
+        <ul className='w-full h-full flex flex-col justify-center items-start'>
+            {pages.map(({ page, url, icon: Icon }) => (
+                <li key={page} className={`${pathname.includes(page) && 'bg-blue2'} w-10 h-10 flex justify-center items-center`}>
+                    <Link href={page}>{Icon && <Icon className="w-4 h-4 text-neutral-600" />}</Link>
                 </li>
             ))}
         </ul>

@@ -19,7 +19,16 @@ const config = {
     },
     extend: {
       colors: {
-        background: "#f8fafc",
+        whitesmoke: "#f5f5f5",
+        offwhite: "#fafafa",
+        light_blue: "#f8fafc",
+        light_blue2: "#e6edf4",
+        theme: "oklch(0.379 0.146 265.522)",
+        hairline_dark: "#80868b",
+        hairline_light: "#80868b",
+      },
+      backgroundImage: {
+        // theme: "linear-gradient(45deg, #ff7eb3, #ff758c, #ff5e62)",
       },
       // colors: {
       //   border: "hsl(var(--border))",
