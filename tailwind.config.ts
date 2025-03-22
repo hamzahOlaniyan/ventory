@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import color from "tailwindcss/colors";
 
 const config = {
   darkMode: ["class"],
@@ -23,9 +24,13 @@ const config = {
         offwhite: "#fafafa",
         light_blue: "#f8fafc",
         light_blue2: "#e6edf4",
-        theme: "oklch(0.379 0.146 265.522)",
+        theme: color.blue,
+
         hairline_dark: "#80868b",
         hairline_light: "#80868b",
+      },
+      fontSize: {
+        xxs: ["10px", "12px"],
       },
       backgroundImage: {
         // theme: "linear-gradient(45deg, #ff7eb3, #ff758c, #ff5e62)",
